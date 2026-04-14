@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:;">
+  <title>Sugar Rumble – Singapore's Favourite Bubble Tea & Bites</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== TOKENS ===== */
+    :root {
+      --purple-900: #2d0e5e;
+      --purple-800: #3d1575;
+      --purple-700: #5a2ea0;
+      --purple-600: #7c44c9;
+      --purple-300: #c4a8f0;
+      --purple-100: #f0e8ff;
+      --gold: #f5a800;
+      --gold-light: #ffc947;
+      --cream: #fffdf5;
+      --white: #ffffff;
+      --text-dark: #1a0e33;
+      --text-mid: #4a3870;
+      --text-light: #8b7ab8;
+      --shadow-soft: 0 8px 32px rgba(45,14,94,0.12);
+      --shadow-card: 0 4px 20px rgba(45,14,94,0.14);
+      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(45,14,94,0.97);
+      backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 42px; height: 42px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 2px 8px rgba(245,168,0,0.4);
+    }
+    .nav-logo-text {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .nav-logo-text span { color: var(--gold); }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a {
+      color: var(--purple-300);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.1); }
+    .nav-cta {
+      background: var(--gold) !important;
+      color: var(--purple-900) !important;
+      font-weight: 700 !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(245,168,0,0.4); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+    .nav-hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; transition: all 0.3s; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--purple-900) 0%, var(--purple-800) 40%, #4a1980 70%, var(--purple-700) 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 100px 5% 60px;
+      gap: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(245,168,0,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-bubbles {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      animation: floatBubble linear infinite;
+    }
+    @keyframes floatBubble {
+      0% { transform: translateY(110vh) scale(0.8); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-10vh) scale(1.1); opacity: 0; }
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(245,168,0,0.15);
+      border: 1px solid rgba(245,168,0,0.35);
+      color: var(--gold-light);
+      font-size: 0.8rem; font-weight: 700;
+      padding: 5px 14px; border-radius: 20px;
+      margin-bottom: 20px;
+      animation: fadeSlideUp 0.6s ease both;
+    }
+    .hero h1 {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 16px;
+      animation: fadeSlideUp 0.6s ease 0.1s both;
+    }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero-sub {
+      color: var(--purple-300);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      animation: fadeSlideUp 0.6s ease 0.2s both;
+    }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      animation: fadeSlideUp 0.6s ease 0.3s both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px;
+      border-radius: 30px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s;
+    }
+    .btn-primary { background: var(--gold); color: var(--purple-900); box-shadow: 0 4px 16px rgba(245,168,0,0.35); }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,168,0,0.45); }
+    .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--white); transform: translateY(-2px); }
+    .btn-purple { background: var(--purple-700); color: var(--white); border: 2px solid var(--purple-600); }
+    .btn-purple:hover { background: var(--purple-600); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+    .btn-full { background: var(--purple-800); color: var(--white); border: 2px solid var(--purple-600); }
+    .btn-full:hover { background: var(--purple-700); transform: translateY(-2px); }
+
+    .hero-visual {
+      position: relative; z-index: 2;
+      display: flex; justify-content: center; align-items: center;
+      animation: fadeSlideUp 0.8s ease 0.2s both;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      backdrop-filter: blur(8px);
+      text-align: center;
+      max-width: 380px; width: 100%;
+    }
+    .hero-card-emoji { font-size: 5rem; display: block; margin-bottom: 12px; animation: wobble 3s ease-in-out infinite; }
+    @keyframes wobble { 0%,100% { transform: rotate(-3deg) scale(1); } 50% { transform: rotate(3deg) scale(1.05); } }
+    .hero-card h2 { font-family: 'Baloo 2', cursive; font-size: 1.5rem; color: var(--white); margin-bottom: 8px; }
+    .hero-card p { color: var(--purple-300); font-size: 0.9rem; margin-bottom: 20px; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .hero-tag {
+      background: rgba(245,168,0,0.15);
+      border: 1px solid rgba(245,168,0,0.3);
+      color: var(--gold-light);
+      font-size: 0.78rem; font-weight: 700;
+      padding: 4px 12px; border-radius: 20px;
+    }
+    .hero-stats {
+      display: flex; gap: 16px; justify-content: center;
+      margin-top: 20px; padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num { font-family: 'Baloo 2', cursive; font-weight: 800; color: var(--gold); font-size: 1.4rem; }
+    .hero-stat-label { color: var(--purple-300); font-size: 0.72rem; }
+
+    /* ===== SECTION SHARED ===== */
+    section { padding: 80px 5%; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--purple-700); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .section-title em { font-style: normal; color: var(--purple-700); }
+    .section-subtitle { color: var(--text-mid); font-size: 1rem; line-height: 1.6; max-width: 560px; }
+
+    /* ===== WHY US ===== */
+    .why-section { background: var(--white); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .why-features { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .why-feature {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 20px;
+      background: var(--purple-100);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--purple-600);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .why-feature:hover { transform: translateX(4px); box-shadow: var(--shadow-card); }
+    .why-feature-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .why-feature-title { font-weight: 700; color: var(--text-dark); font-size: 0.95rem; }
+    .why-feature-desc { color: var(--text-mid); font-size: 0.85rem; margin-top: 2px; }
+    .why-image-side { display: flex; flex-direction: column; gap: 16px; }
+    .why-img-card {
+      background: linear-gradient(135deg, var(--purple-100), var(--white));
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      text-align: center;
+      border: 1px solid var(--purple-300);
+    }
+    .why-img-card-emoji { font-size: 4rem; margin-bottom: 10px; }
+    .why-img-card h3 { font-family: 'Baloo 2', cursive; font-weight: 700; color: var(--purple-800); font-size: 1.1rem; }
+    .why-img-card p { color: var(--text-mid); font-size: 0.85rem; margin-top: 4px; }
+    .why-mini-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .why-mini {
+      background: var(--purple-900);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .why-mini:hover { transform: translateY(-3px); }
+    .why-mini-emoji { font-size: 1.8rem; }
+    .why-mini-text { color: var(--purple-300); font-size: 0.78rem; font-weight: 600; margin-top: 6px; }
+
+    /* ===== MENU SECTION ===== */
+    .menu-section { background: var(--cream); }
+    .menu-header { text-align: center; margin-bottom: 48px; }
+    .menu-tabs {
+      display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .menu-tab {
+      padding: 9px 22px;
+      border-radius: 25px;
+      font-weight: 700; font-size: 0.88rem;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+      background: var(--white);
+      color: var(--text-mid);
+      border-color: var(--purple-300);
+    }
+    .menu-tab.active, .menu-tab:hover {
+      background: var(--purple-800);
+      color: var(--white);
+      border-color: var(--purple-800);
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .menu-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .menu-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(45,14,94,0.18); }
+    .menu-card-img {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      background: linear-gradient(135deg, var(--purple-100), #e8d5ff);
+    }
+    .menu-card-body { padding: 16px 18px 20px; }
+    .menu-card-tag {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--purple-600); margin-bottom: 6px;
+    }
+    .menu-card-name { font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 1.05rem; color: var(--text-dark); }
+    .menu-card-desc { color: var(--text-mid); font-size: 0.82rem; margin-top: 4px; line-height: 1.4; }
+    .menu-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+    .menu-card-price { font-weight: 800; color: var(--purple-800); font-size: 1rem; }
+    .menu-card-btn {
+      width: 32px; height: 32px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .menu-card-btn:hover { background: var(--gold-light); transform: scale(1.1); }
+    .popular-badge {
+      position: relative;
+    }
+    .popular-badge::after {
+      content: '⭐ Popular';
+      position: absolute; top: 10px; right: 10px;
+      background: var(--gold);
+      color: var(--purple-900);
+      font-size: 0.68rem; font-weight: 700;
+      padding: 3px 8px; border-radius: 10px;
+    }
+    .menu-cta { text-align: center; margin-top: 40px; }
+
+    /* ===== PARTY / EVENTS ===== */
+    .party-section {
+      background: linear-gradient(135deg, var(--purple-900), var(--purple-800));
+      color: var(--white);
+    }
+    .party-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .party-section .section-title { color: var(--white); }
+    .party-section .section-title em { color: var(--gold); }
+    .party-section .section-label { color: var(--gold-light); }
+    .party-section .section-subtitle { color: var(--purple-300); }
+    .party-features { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+    .party-feature {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.9rem; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .party-feature:hover { background: rgba(255,255,255,0.14); }
+    .party-feature span:first-child { font-size: 1.4rem; }
+    .party-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .party-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      text-align: center;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .party-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.13); }
+    .party-card-emoji { font-size: 2.4rem; margin-bottom: 8px; }
+    .party-card h4 { font-family: 'Baloo 2', cursive; font-weight: 700; color: var(--white); font-size: 0.95rem; }
+    .party-card p { color: var(--purple-300); font-size: 0.78rem; margin-top: 4px; }
+    .party-cta { margin-top: 32px; }
+
+    /* ===== HONEY PROMISE ===== */
+    .honey-section { background: var(--white); }
+    .honey-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 48px auto 0; }
+    .honey-card {
+      text-align: center;
+      padding: 32px 24px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, var(--purple-100), var(--white));
+      border: 1px solid var(--purple-300);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .honey-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
+    .honey-icon { font-size: 2.8rem; margin-bottom: 14px; }
+    .honey-card h3 { font-family: 'Baloo 2', cursive; font-weight: 700; color: var(--purple-800); font-size: 1.05rem; margin-bottom: 8px; }
+    .honey-card p { color: var(--text-mid); font-size: 0.85rem; line-height: 1.5; }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-section { background: var(--purple-100); }
+    .testimonials-header { text-align: center; margin-bottom: 48px; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px; max-width: 1100px; margin: 0 auto;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); }
+    .testimonial-stars { color: var(--gold); font-size: 1rem; margin-bottom: 12px; }
+    .testimonial-text { color: var(--text-dark); font-size: 0.9rem; line-height: 1.6; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple-600), var(--purple-800));
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 700; font-size: 0.9rem;
+    }
+    .testimonial-name { font-weight: 700; color: var(--text-dark); font-size: 0.88rem; }
+    .testimonial-location { color: var(--text-light); font-size: 0.78rem; }
+
+    /* ===== LOCATIONS ===== */
+    .locations-section { background: var(--cream); }
+    .locations-header { text-align: center; margin-bottom: 48px; }
+    .locations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+    .location-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+      border-top: 4px solid var(--purple-700);
+      transition: transform 0.2s;
+    }
+    .location-card:hover { transform: translateY(-4px); }
+    .location-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .location-icon { font-size: 2rem; }
+    .location-name { font-family: 'Baloo 2', cursive; font-weight: 700; color: var(--purple-800); font-size: 1.1rem; }
+    .location-details { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+    .location-detail { display: flex; align-items: flex-start; gap: 8px; font-size: 0.88rem; color: var(--text-mid); }
+    .location-detail-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .location-open {
+      display: inline-block; background: #d4f5e0; color: #1a7d42;
+      font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 10px; margin-bottom: 14px;
+    }
+
+    /* ===== ORDER SECTION ===== */
+    .order-section {
+      background: linear-gradient(135deg, var(--purple-900), #1a0830);
+      text-align: center; padding: 80px 5%;
+    }
+    .order-section .section-title { color: var(--white); }
+    .order-section .section-title em { color: var(--gold); }
+    .order-section .section-subtitle { color: var(--purple-300); margin: 0 auto 40px; }
+    .order-options { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .order-option {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-xl);
+      padding: 28px 24px;
+      width: 200px;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .order-option:hover { background: rgba(255,255,255,0.15); transform: translateY(-6px); border-color: var(--gold); }
+    .order-option-emoji { font-size: 2.4rem; margin-bottom: 10px; }
+    .order-option h4 { font-family: 'Baloo 2', cursive; font-weight: 700; color: var(--white); font-size: 1rem; }
+    .order-option p { color: var(--purple-300); font-size: 0.78rem; margin-top: 4px; }
+    .order-option.featured { border-color: var(--gold); background: rgba(245,168,0,0.1); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--purple-900);
+      color: var(--purple-300);
+      padding: 60px 5% 32px;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+    .footer-brand .nav-logo { margin-bottom: 16px; display: inline-flex; }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.6; max-width: 240px; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 18px; }
+    .footer-social {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; cursor: pointer; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .footer-social:hover { background: var(--gold); color: var(--purple-900); }
+    .footer-col h4 { font-family: 'Baloo 2', cursive; font-weight: 700; color: var(--white); font-size: 1rem; margin-bottom: 14px; }
+    .footer-col a { display: block; color: var(--purple-300); text-decoration: none; font-size: 0.88rem; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 0.82rem; }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== ANNOUNCEMENT BAR ===== */
+    .announcement-bar {
+      background: var(--gold);
+      color: var(--purple-900);
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 0.82rem; font-weight: 700;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1001;
+    }
+    .announcement-bar a { color: var(--purple-900); text-decoration: underline; }
+    nav { top: 36px; }
+
+    /* ===== SCROLL TO TOP ===== */
+    .scroll-top {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 46px; height: 46px;
+      background: var(--purple-700);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.2rem;
+      cursor: pointer; border: none;
+      box-shadow: var(--shadow-soft);
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .scroll-top.visible { opacity: 1; transform: translateY(0); }
+    .scroll-top:hover { background: var(--purple-600); }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      .announcement-bar { font-size: 0.73rem; padding: 6px 12px; }
+      nav { top: 30px; padding: 0 4%; }
+      .nav-links { display: none; flex-direction: column; gap: 4px; }
+      .nav-links.open { display: flex; position: fixed; top: 98px; left: 0; right: 0; background: var(--purple-900); padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); }
+      .nav-hamburger { display: flex; }
+      .hero { grid-template-columns: 1fr; padding-top: 120px; text-align: center; }
+      .hero-visual { display: none; }
+      .hero-actions { justify-content: center; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-image-side { order: -1; }
+      .party-grid { grid-template-columns: 1fr; }
+      .honey-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .order-options { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    🍯 All drinks sweetened with 100% pure honey — No refined sugar! &nbsp;|&nbsp; <a href="#order">Order Now →</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#">
+      <div class="nav-logo-icon">🐼</div>
+      <div class="nav-logo-text">Sugar <span>Rumble</span></div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#menu">Menu</a>
+      <a href="#why">Our Story</a>
+      <a href="#party">Plan a Party</a>
+      <a href="#locations">Locations</a>
+      <a href="#order" class="nav-cta">Order Now 🧋</a>
+    </div>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bubbles" id="bubbles"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">⭐ Singapore's #1 Family Bubble Tea</div>
+      <h1>Singapore's <em>Favourite</em><br/>Family-Friendly<br/>Bubble Tea & Bites 🧋</h1>
+      <p class="hero-sub">Western · Japanese · Taiwanese Snacks —<br/>Made Better with 100% Pure Honey 🍯</p>
+      <div class="hero-actions">
+        <a href="#order" class="btn btn-primary">🛍️ Order Now</a>
+        <a href="#menu" class="btn btn-outline">View Menu</a>
+        <a href="#party" class="btn btn-outline">🎉 Plan a Party</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <span class="hero-card-emoji">🧋</span>
+        <h2>Crafted with Love</h2>
+        <p>Every cup sweetened with 100% pure honey — naturally better for your family.</p>
+        <div class="hero-tags">
+          <span class="hero-tag">🍯 100% Honey</span>
+          <span class="hero-tag">👨‍👩‍👧 Family Friendly</span>
+          <span class="hero-tag">🇸🇬 Made in SG</span>
+          <span class="hero-tag">🎂 Party Bundles</span>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="hero-stat-num">2</div><div class="hero-stat-label">Locations</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">20+</div><div class="hero-stat-label">Menu Items</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">0%</div><div class="hero-stat-label">Refined Sugar</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-section" id="why">
+    <div class="why-grid">
+      <div class="reveal">
+        <div class="section-label">⭐ Why We're Different</div>
+        <h2 class="section-title">Built by Parents,<br/><em>For Families</em></h2>
+        <p class="section-subtitle">We started Sugar Rumble because we wanted a bubble tea brand our whole family could enjoy — guilt-free, fun, and delicious.</p>
+        <div class="why-features">
+          <div class="why-feature">
+            <div class="why-feature-icon">🍯</div>
+            <div>
+              <div class="why-feature-title">100% Pure Honey</div>
+              <div class="why-feature-desc">Every drink uses real honey instead of refined sugar — better taste, better for you.</div>
+            </div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon">👨‍👩‍👧‍👦</div>
+            <div>
+              <div class="why-feature-title">Kid-Friendly Menu</div>
+              <div class="why-feature-desc">Curated with kids in mind — lighter sweetness, fun flavours, safe ingredients.</div>
+            </div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon">🍗</div>
+            <div>
+              <div class="why-feature-title">Western, Japanese & Taiwanese Favourites</div>
+              <div class="why-feature-desc">From popcorn chicken to mochi desserts — we bring Asia's best street snacks to you.</div>
+            </div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon">🎉</div>
+            <div>
+              <div class="why-feature-title">Perfect for Gatherings</div>
+              <div class="why-feature-desc">Birthdays, school events, office parties — we make it easy and affordable.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-image-side reveal">
+        <div class="why-img-card">
+          <div class="why-img-card-emoji">🐼💜</div>
+          <h3>Singapore's Sweetest Panda</h3>
+          <p>A family brand that cares about what goes into every cup</p>
+        </div>
+        <div class="why-mini-cards">
+          <div class="why-mini"><div class="why-mini-emoji">🧋</div><div class="why-mini-text">Signature Milk Teas</div></div>
+          <div class="why-mini"><div class="why-mini-emoji">🍊</div><div class="why-mini-text">Fresh Fruit Teas</div></div>
+          <div class="why-mini"><div class="why-mini-emoji">🍗</div><div class="why-mini-text">Chicken Bites</div></div>
+          <div class="why-mini"><div class="why-mini-emoji">🍮</div><div class="why-mini-text">Honey Desserts</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu-section" id="menu">
+    <div class="menu-header reveal">
+      <div class="section-label">🍽️ Our Menu</div>
+      <h2 class="section-title">Customer <em>Favourites</em></h2>
+      <p class="section-subtitle" style="margin:0 auto;">Handcrafted drinks and bites made with real ingredients — no shortcuts, no compromise.</p>
+    </div>
+
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="filterMenu('all', this)">All</button>
+      <button class="menu-tab" onclick="filterMenu('milk-tea', this)">🧋 Milk Teas</button>
+      <button class="menu-tab" onclick="filterMenu('fruit-tea', this)">🍊 Fruit Teas</button>
+      <button class="menu-tab" onclick="filterMenu('bites', this)">🍗 Bites</button>
+      <button class="menu-tab" onclick="filterMenu('dessert', this)">🍮 Desserts</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid"></div>
+
+    <div class="menu-cta reveal">
+      <a href="#order" class="btn btn-full">See Full Menu & Order 🍽️</a>
+    </div>
+  </section>
+
+  <!-- HONEY PROMISE -->
+  <section class="honey-section" id="honey">
+    <div style="text-align:center;" class="reveal">
+      <div class="section-label">🍯 The Honey Promise</div>
+      <h2 class="section-title">Why <em>Honey</em> Matters</h2>
+      <p class="section-subtitle" style="margin:0 auto;">We made one simple change that makes every cup better.</p>
+    </div>
+    <div class="honey-grid">
+      <div class="honey-card reveal">
+        <div class="honey-icon">🌸</div>
+        <h3>Natural Sweetness</h3>
+        <p>Pure honey has a complex, floral sweetness that refined sugar simply can't match. Every sip is richer and more nuanced.</p>
+      </div>
+      <div class="honey-card reveal">
+        <div class="honey-icon">💛</div>
+        <h3>Better for Kids</h3>
+        <p>Unlike refined sugar, honey comes with antioxidants and enzymes. Parents can feel good about what their kids are drinking.</p>
+      </div>
+      <div class="honey-card reveal">
+        <div class="honey-icon">🫙</div>
+        <h3>Locally Sourced</h3>
+        <p>We partner with trusted suppliers to ensure every drop of honey is pure, traceable, and of the highest quality.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTY -->
+  <section class="party-section" id="party">
+    <div class="party-grid">
+      <div class="reveal">
+        <div class="section-label">🎉 Events & Parties</div>
+        <h2 class="section-title">We Make Every<br/><em>Gathering Special</em></h2>
+        <p class="section-subtitle">Kid's birthday, school event, or office party — let us handle the drinks and bites so you can focus on the fun.</p>
+        <div class="party-features">
+          <div class="party-feature"><span>🎂</span><span>Custom drink bundles for any occasion</span></div>
+          <div class="party-feature"><span>🧋</span><span>Bulk order discounts available</span></div>
+          <div class="party-feature"><span>🎨</span><span>Personalised labels and packaging</span></div>
+          <div class="party-feature"><span>🚚</span><span>Delivery and self-collect options</span></div>
+          <div class="party-feature"><span>📞</span><span>Dedicated party planning support</span></div>
+        </div>
+        <div class="party-cta">
+          <a href="mailto:hello@purplepanda.sg" class="btn btn-primary">🎉 Plan My Party</a>
+        </div>
+      </div>
+      <div class="party-cards reveal">
+        <div class="party-card">
+          <div class="party-card-emoji">🎂</div>
+          <h4>Birthday Parties</h4>
+          <p>Make their day extra special with custom bundles</p>
+        </div>
+        <div class="party-card">
+          <div class="party-card-emoji">🏫</div>
+          <h4>School Events</h4>
+          <p>Bulk orders with kid-friendly options</p>
+        </div>
+        <div class="party-card">
+          <div class="party-card-emoji">💼</div>
+          <h4>Office Gatherings</h4>
+          <p>Treat your team to something different</p>
+        </div>
+        <div class="party-card">
+          <div class="party-card-emoji">🎊</div>
+          <h4>Celebrations</h4>
+          <p>Weddings, graduations & milestones</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section" id="reviews">
+    <div class="testimonials-header reveal">
+      <div class="section-label">💬 Customer Love</div>
+      <h2 class="section-title">What Families <em>Say</em></h2>
+    </div>
+    <div class="testimonials-grid" id="testimonialsGrid"></div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="locations-section" id="locations">
+    <div class="locations-header reveal">
+      <div class="section-label">📍 Find Us</div>
+      <h2 class="section-title">Visit <em>Us</em></h2>
+      <p class="section-subtitle" style="margin:0 auto;">Two convenient locations across Singapore — family-friendly seating available at both.</p>
+    </div>
+    <div class="locations-grid">
+      <div class="location-card reveal">
+        <div class="location-header">
+          <div class="location-icon">📍</div>
+          <div class="location-name">Poiz Centre</div>
+        </div>
+        <span class="location-open">🟢 Open Daily</span>
+        <div class="location-details">
+          <div class="location-detail"><span class="location-detail-icon">🏢</span><span>#01-09, Poiz Centre, 51 Upper Serangoon Road, Singapore 347697</span></div>
+          <div class="location-detail"><span class="location-detail-icon">🕐</span><span>Mon–Sun: 11:00am – 9:30pm</span></div>
+          <div class="location-detail"><span class="location-detail-icon">🪑</span><span>Family-friendly seating available</span></div>
+          <div class="location-detail"><span class="location-detail-icon">🚇</span><span>Nearest MRT: Potong Pasir (CC10)</span></div>
+        </div>
+        <a href="https://maps.google.com/?q=Poiz+Centre+Singapore" target="_blank" rel="noopener noreferrer" class="btn btn-purple" style="width:100%;justify-content:center;">🗺️ Get Directions</a>
+      </div>
+      <div class="location-card reveal">
+        <div class="location-header">
+          <div class="location-icon">📍</div>
+          <div class="location-name">Our Tampines Hub</div>
+        </div>
+        <span class="location-open">🟢 Open Daily</span>
+        <div class="location-details">
+          <div class="location-detail"><span class="location-detail-icon">🏢</span><span>B1-K5, Our Tampines Hub, 1 Tampines Walk, Singapore 528523</span></div>
+          <div class="location-detail"><span class="location-detail-icon">🕐</span><span>Mon–Sun: 11:00am – 9:30pm</span></div>
+          <div class="location-detail"><span class="location-detail-icon">🪑</span><span>Family-friendly seating available</span></div>
+          <div class="location-detail"><span class="location-detail-icon">🚇</span><span>Nearest MRT: Tampines (EW2/DT32)</span></div>
+        </div>
+        <a href="https://maps.google.com/?q=Our+Tampines+Hub+Singapore" target="_blank" rel="noopener noreferrer" class="btn btn-purple" style="width:100%;justify-content:center;">🗺️ Get Directions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER CTA -->
+  <section class="order-section" id="order">
+    <div class="section-label" style="color:var(--gold-light);display:flex;justify-content:center;">🛍️ Order Now</div>
+    <h2 class="section-title" style="margin-bottom:12px;">Ready to <em>Sip?</em></h2>
+    <p class="section-subtitle">Order online for delivery or self-collect. Available on multiple platforms.</p>
+    <div class="order-options">
+      <a href="https://purplepanda.sg/" target="_blank" rel="noopener noreferrer" class="order-option featured">
+        <div class="order-option-emoji">🌐</div>
+        <h4>Our Website</h4>
+        <p>Order directly from us</p>
+      </a>
+      <a href="#" class="order-option">
+        <div class="order-option-emoji">🟢</div>
+        <h4>GrabFood</h4>
+        <p>Fast delivery island-wide</p>
+      </a>
+      <a href="#" class="order-option">
+        <div class="order-option-emoji">🔵</div>
+        <h4>foodpanda</h4>
+        <p>Delivered to your door</p>
+      </a>
+      <a href="#locations" class="order-option">
+        <div class="order-option-emoji">🏃</div>
+        <h4>Self-Collect</h4>
+        <p>Pick up in-store</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="#">
+          <div class="nav-logo-icon">🐼</div>
+          <div class="nav-logo-text">Sugar <span>Rumble</span></div>
+        </a>
+        <p>Singapore's favourite family-friendly bubble tea & bites. Sweetened naturally with 100% pure honey.</p>
+        <div class="footer-socials">
+          <a class="footer-social" href="https://www.instagram.com/sugarrumble.sg/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📸</a>
+          <a class="footer-social" href="https://www.facebook.com/sugarrumble/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">📘</a>
+          <a class="footer-social" href="https://www.tiktok.com/@sugarrumble" target="_blank" rel="noopener noreferrer" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <a href="#menu">Milk Teas</a>
+        <a href="#menu">Fruit Teas</a>
+        <a href="#menu">Chicken Bites</a>
+        <a href="#menu">Desserts</a>
+        <a href="#menu">Seasonal Specials</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#why">Our Story</a>
+        <a href="#honey">The Honey Promise</a>
+        <a href="#party">Plan a Party</a>
+        <a href="#locations">Locations</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get Help</h4>
+        <a href="mailto:hello@purplepanda.sg">Contact Us</a>
+        <a href="#order">Order Online</a>
+        <a href="#party">Bulk Orders</a>
+        <a href="#locations">Find a Store</a>
+        <a href="#">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Sugar Rumble Pte. Ltd. All rights reserved.</p>
+      <p><a href="#" style="color:var(--purple-300);text-decoration:none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="#" style="color:var(--purple-300);text-decoration:none;">Terms of Use</a></p>
+    </div>
+  </footer>
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+  <script>
+    // ===== MENU DATA =====
+    const menuItems = [
+      { cat: 'milk-tea', name: 'Brown Sugar Milk Tea', desc: 'Rich brown sugar pearls with creamy milk tea base', price: '$5.90', emoji: '🧋', popular: true },
+      { cat: 'milk-tea', name: 'Taro Milk Tea', desc: 'Velvety taro blended with our signature milk tea', price: '$5.90', emoji: '💜', popular: false },
+      { cat: 'milk-tea', name: 'Matcha Milk Tea', desc: 'Premium matcha powder with honey-sweetened milk', price: '$6.20', emoji: '🍵', popular: false },
+      { cat: 'milk-tea', name: 'Classic Pearl Milk Tea', desc: 'Timeless bubble tea with chewy tapioca pearls', price: '$5.50', emoji: '🫧', popular: true },
+      { cat: 'fruit-tea', name: 'Mango Fruit Tea', desc: 'Fresh mango chunks with lychee jelly in green tea', price: '$5.90', emoji: '🥭', popular: true },
+      { cat: 'fruit-tea', name: 'Lychee Rose Tea', desc: 'Floral rose tea with sweet lychee popping pearls', price: '$5.90', emoji: '🌹', popular: false },
+      { cat: 'fruit-tea', name: 'Passion Fruit Green Tea', desc: 'Tangy passion fruit with refreshing green tea', price: '$5.50', emoji: '🍊', popular: false },
+      { cat: 'bites', name: 'Taiwanese Chicken Bites', desc: 'Crispy, golden chicken coated in our secret spice blend', price: '$7.90', emoji: '🍗', popular: true },
+      { cat: 'bites', name: 'Honey Popcorn Chicken', desc: 'Bite-sized chicken glazed with pure honey sauce', price: '$7.90', emoji: '🍯', popular: false },
+      { cat: 'bites', name: 'Takoyaki Balls', desc: 'Classic Japanese octopus balls with mayo & bonito', price: '$6.90', emoji: '🐙', popular: false },
+      { cat: 'dessert', name: 'Signature Honey Dessert', desc: 'Silky tofu pudding drizzled with raw honeycomb', price: '$4.90', emoji: '🍮', popular: true },
+      { cat: 'dessert', name: 'Mochi Ice Cream', desc: 'Chewy Japanese mochi with creamy ice cream filling', price: '$5.90', emoji: '🍡', popular: false },
+    ];
+
+    function renderMenu(filter) {
+      const grid = document.getElementById('menuGrid');
+      const items = filter === 'all' ? menuItems : menuItems.filter(i => i.cat === filter);
+      grid.innerHTML = items.map(item => `
+        <div class="menu-card ${item.popular ? 'popular-badge' : ''}" role="article">
+          <div class="menu-card-img">${item.emoji}</div>
+          <div class="menu-card-body">
+            <div class="menu-card-tag">${item.cat.replace('-', ' ')}</div>
+            <div class="menu-card-name">${item.name}</div>
+            <div class="menu-card-desc">${item.desc}</div>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">${item.price}</span>
+              <button class="menu-card-btn" aria-label="Add ${item.name} to cart">+</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterMenu(cat, btn) {
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      renderMenu(cat);
+      observeReveal();
+    }
+
+    renderMenu('all');
+
+    // ===== TESTIMONIALS =====
+    const testimonials = [
+      { text: "My kids absolutely love the Brown Sugar Milk Tea! And I love that it's made with honey instead of sugar — finally a bubble tea I feel good giving them.", name: "Sarah L.", location: "Tampines", stars: 5 },
+      { text: "The Taiwanese Chicken Bites are so addictive. We ordered them for our office party and everyone kept asking where they were from!", name: "Marcus T.", location: "Serangoon", stars: 5 },
+      { text: "Planned my daughter's birthday party through Sugar Rumble and it was so seamless. Custom bundles, great pricing, and the kids went crazy for the drinks!", name: "Priya K.", location: "Tampines", stars: 5 },
+      { text: "The Honey Dessert is unlike anything else in Singapore. The honeycomb on top is real and the tofu is so silky. We come every week now!", name: "James W.", location: "Potong Pasir", stars: 5 },
+      { text: "Love that they're built by parents — you can tell they really care about quality. No fake sweeteners, real ingredients. This is our go-to boba now.", name: "Mei Ling C.", location: "Singapore", stars: 5 },
+      { text: "Discovered the Poiz Centre outlet and haven't looked back. Friendly staff, generous portions, and that Mango Fruit Tea is just perfection.", name: "Aidan R.", location: "Potong Pasir", stars: 5 },
+    ];
+
+    document.getElementById('testimonialsGrid').innerHTML = testimonials.map(t => `
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">${'★'.repeat(t.stars)}</div>
+        <p class="testimonial-text">"${t.text}"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">${t.name[0]}</div>
+          <div>
+            <div class="testimonial-name">${t.name}</div>
+            <div class="testimonial-location">📍 ${t.location}</div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    // ===== FLOATING BUBBLES =====
+    const bubblesContainer = document.getElementById('bubbles');
+    for (let i = 0; i < 14; i++) {
+      const b = document.createElement('div');
+      b.className = 'bubble';
+      const size = 20 + Math.random() * 60;
+      b.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${Math.random()*100}%;
+        animation-duration:${8+Math.random()*12}s;
+        animation-delay:${Math.random()*10}s;
+      `;
+      bubblesContainer.appendChild(b);
+    }
+
+    // ===== SCROLL REVEAL =====
+    function observeReveal() {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => { el.classList.remove('visible'); obs.observe(el); });
+    }
+    observeReveal();
+
+    // ===== SCROLL TO TOP =====
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+
+    // ===== NAV MOBILE =====
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Close nav on link click
+    document.querySelectorAll('#navLinks a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+
+    // ===== NAVBAR SHRINK ON SCROLL =====
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      nav.style.height = window.scrollY > 60 ? '56px' : '68px';
+    });
+  </script>
+</body>
+</html>
