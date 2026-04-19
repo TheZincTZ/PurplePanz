@@ -52,8 +52,10 @@
       padding: 0 5%; height: 68px;
       box-shadow: 0 2px 20px rgba(0,0,0,0.25);
     }
-    .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-logo-img { height: 42px; width: auto; max-width: min(220px, 46vw); object-fit: contain; display: block; border-radius: 10px; background: var(--white); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-img { height: 42px; width: auto; max-width: min(120px, 34vw); object-fit: contain; display: block; flex-shrink: 0; border-radius: 10px; background: var(--white); }
+    .nav-logo-text { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1.2rem; color: var(--white); white-space: nowrap; }
+    .nav-logo-text span { color: var(--gold); }
     .nav-links { display: flex; align-items: center; gap: 8px; }
     .nav-links a { color: var(--purple-300); text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 6px 14px; border-radius: 20px; transition: all 0.2s; }
     .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.1); }
@@ -149,7 +151,7 @@
     .why-feature-desc { color: var(--text-mid); font-size: 0.85rem; margin-top: 2px; }
     .why-image-side { display: flex; flex-direction: column; gap: 16px; }
     .why-img-card { background: linear-gradient(135deg, var(--purple-100), var(--white)); border-radius: var(--radius-xl); padding: 32px; text-align: center; border: 1px solid var(--purple-300); }
-    .why-img-card-emoji { font-size: 4rem; margin-bottom: 10px; }
+    .why-img-card-emote { display: block; margin: 0 auto 14px; max-width: 100%; width: min(300px, 100%); height: auto; object-fit: contain; }
     .why-img-card h3 { font-family: 'Baloo 2', cursive; font-weight: 700; color: var(--purple-800); font-size: 1.1rem; }
     .why-img-card p { color: var(--text-mid); font-size: 0.85rem; margin-top: 4px; }
     .why-mini-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -163,6 +165,8 @@
     .press-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-light); margin-bottom: 12px; }
     .press-logos { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
     .press-logo { font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 0.9rem; color: var(--purple-700); opacity: 0.75; }
+    a.press-logo { text-decoration: none; color: var(--purple-700); transition: opacity 0.2s, color 0.2s; }
+    a.press-logo:hover { opacity: 1; color: var(--purple-800); }
 
     /* MENU */
     .menu-section { background: var(--cream); }
@@ -171,9 +175,11 @@
     .menu-tab { padding: 9px 22px; border-radius: 25px; font-weight: 700; font-size: 0.88rem; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; background: var(--white); color: var(--text-mid); border-color: var(--purple-300); }
     .menu-tab.active, .menu-tab:hover { background: var(--purple-800); color: var(--white); border-color: var(--purple-800); }
     .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
-    .menu-card { background: var(--white); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-card); transition: transform 0.25s, box-shadow 0.25s; cursor: pointer; }
+    .menu-card { position: relative; background: var(--white); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-card); transition: transform 0.25s, box-shadow 0.25s; cursor: pointer; }
     .menu-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(38,33,92,0.18); }
-    .menu-card-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 4rem; background: linear-gradient(135deg, var(--purple-100), #e8d5ff); }
+    .menu-card-img { height: 200px; background: linear-gradient(135deg, var(--purple-100), #e8d5ff); overflow: hidden; }
+    .menu-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform 0.35s ease; }
+    .menu-card:hover .menu-card-img img { transform: scale(1.04); }
     .menu-card-body { padding: 16px 18px 20px; }
     .menu-card-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--purple-600); margin-bottom: 6px; }
     .menu-card-name { font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 1.05rem; color: var(--text-dark); }
@@ -183,7 +189,7 @@
     .menu-card-btn { width: 32px; height: 32px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; cursor: pointer; border: none; transition: all 0.2s; }
     .menu-card-btn:hover { background: var(--gold-light); transform: scale(1.1); }
     .popular-badge { position: relative; }
-    .popular-badge::after { content: '⭐ Popular'; position: absolute; top: 10px; right: 10px; background: var(--gold); color: var(--purple-900); font-size: 0.68rem; font-weight: 700; padding: 3px 8px; border-radius: 10px; }
+    .popular-badge::after { content: '⭐ Popular'; position: absolute; top: 10px; right: 10px; z-index: 2; background: var(--gold); color: var(--purple-900); font-size: 0.68rem; font-weight: 700; padding: 3px 8px; border-radius: 10px; }
     .menu-cta { text-align: center; margin-top: 40px; }
 
     /* PARTY */
@@ -300,7 +306,8 @@
   <!-- NAVBAR -->
   <nav id="navbar">
     <a class="nav-logo" href="#">
-      <img class="nav-logo-img" src="images/logo/Purple%20Panda%20LOGO_WhiteBG.png" alt="Purple Panda" width="220" height="42" />
+      <img class="nav-logo-img" src="images/logo/Purple%20Panda%20LOGO_WhiteBG.png" alt="" width="120" height="42" />
+      <div class="nav-logo-text">Purple <span>Panda</span></div>
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#menu">Menu</a>
@@ -352,8 +359,8 @@
   <div class="press-bar">
     <div class="press-label">As featured on</div>
     <div class="press-logos">
-      <span class="press-logo">THE STRAITS TIMES</span>
-      <span class="press-logo">SETHLUI.COM</span>
+      <a class="press-logo" href="https://www.straitstimes.com/life/food/mochi-bubbles-up-in-tea" target="_blank" rel="noopener noreferrer">THE STRAITS TIMES</a>
+      <a class="press-logo" href="https://merewards.sg/stories-details/627/purple-panda-review-iconic-meeting-place-with-grilled-chicken-and-bubble-tea" target="_blank" rel="noopener noreferrer">MEREWARDS</a>
       <span class="press-logo">UFM 100.3 是生活</span>
       <span class="press-logo">偷吃</span>
     </div>
@@ -445,7 +452,7 @@
       </div>
       <div class="why-image-side reveal">
         <div class="why-img-card">
-          <div class="why-img-card-emoji">🐼💜</div>
+          <img class="why-img-card-emote" src="images/emotes/Life%20Is%20Not%20Always%20Black%20%26%20White.png" alt="Life is not always black and white" width="300" height="200" />
           <h3>"Life is not always black & white"</h3>
           <p>It's full of colour, uncertainty, and joy — requiring empathy and an open mind.</p>
         </div>
@@ -470,8 +477,7 @@
       <button class="menu-tab active" onclick="filterMenu('all', this)">All</button>
       <button class="menu-tab" onclick="filterMenu('milk-tea', this)">🧋 Bubble Tea</button>
       <button class="menu-tab" onclick="filterMenu('mains', this)">🍗 Mains</button>
-      <button class="menu-tab" onclick="filterMenu('bites', this)">🐙 Japanese Bites</button>
-      <button class="menu-tab" onclick="filterMenu('dessert', this)">🍮 Desserts</button>
+      <button class="menu-tab" onclick="filterMenu('dessert', this)">🍮 Bowls &amp; desserts</button>
     </div>
     <div class="menu-grid" id="menuGrid"></div>
     <div class="menu-cta reveal">
@@ -586,7 +592,8 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="nav-logo" href="#" style="margin-bottom:16px;">
-          <img class="nav-logo-img" src="images/logo/Purple%20Panda%20LOGO_WhiteBG.png" alt="Purple Panda" width="220" height="42" />
+          <img class="nav-logo-img" src="images/logo/Purple%20Panda%20LOGO_WhiteBG.png" alt="" width="120" height="42" />
+          <div class="nav-logo-text">Purple <span>Panda</span></div>
         </a>
         <p>Singapore's favourite family-friendly diner. Born in Singapore. Where there's always something for everyone in the family.</p>
         <div class="footer-socials">
@@ -629,19 +636,21 @@
   <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
   <script>
+    const menuCatLabel = { 'milk-tea': 'Bubble tea', 'mains': 'Mains', 'dessert': 'Bowls & desserts' };
+
     const menuItems = [
-      { cat: 'milk-tea', name: 'Brown Sugar Bubble Tea', desc: 'Rich brown sugar pearls with creamy milk tea base', price: '$5.90', emoji: '🧋', popular: true },
-      { cat: 'milk-tea', name: 'Taro Milk Tea', desc: 'Velvety taro blended with our signature milk tea', price: '$5.90', emoji: '💜', popular: false },
-      { cat: 'milk-tea', name: 'Mango Fruit Tea', desc: 'Fresh mango chunks with lychee jelly in green tea', price: '$5.90', emoji: '🥭', popular: true },
-      { cat: 'milk-tea', name: 'Classic Pearl Milk Tea', desc: 'Timeless bubble tea with chewy tapioca pearls', price: '$5.50', emoji: '🫧', popular: false },
-      { cat: 'mains', name: 'Chicken Chop', desc: 'Juicy grilled chicken with mushroom sauce and sides — a family comfort classic', price: '$12.90', emoji: '🍗', popular: true },
-      { cat: 'mains', name: 'Fish & Chips', desc: 'Crispy battered fish with hand-cut fries and tartar sauce', price: '$12.90', emoji: '🐟', popular: false },
-      { cat: 'mains', name: 'Wagyu Beef Cubes', desc: 'Premium wagyu beef cubes with nori, grilled to perfection', price: '$16.90', emoji: '🥩', popular: true },
-      { cat: 'bites', name: 'Taiwanese Popcorn Chicken', desc: 'Crispy bite-sized chicken with our signature spice blend', price: '$7.90', emoji: '🍿', popular: true },
-      { cat: 'bites', name: 'Takoyaki Balls', desc: 'Classic Japanese octopus balls with mayo and bonito flakes', price: '$6.90', emoji: '🐙', popular: false },
-      { cat: 'bites', name: 'Mochi Mania', desc: 'Chewy Japanese mochi in assorted flavours — kids love these', price: '$5.90', emoji: '🍡', popular: false },
-      { cat: 'dessert', name: 'Signature Chizu Dessert', desc: 'Silky tofu pudding with brown sugar and signature toppings', price: '$4.90', emoji: '🍮', popular: true },
-      { cat: 'dessert', name: 'Mochi Ice Cream', desc: 'Chewy Japanese mochi with creamy ice cream filling', price: '$5.90', emoji: '🍦', popular: false },
+      { cat: 'mains', name: 'Fish and Chips', desc: 'Crispy battered fish with golden fries and tartar — a diner classic.', price: '$12.90', img: 'images/foods/fnc.jpg', popular: true },
+      { cat: 'mains', name: 'Chicken Cutlet', desc: 'Golden fried cutlet, juicy inside — comfort food the whole table loves.', price: '$10.90', img: 'images/foods/chixcutlet.jpg', popular: true },
+      { cat: 'mains', name: 'Carbonara', desc: 'Creamy pasta with savoury notes — hearty and satisfying.', price: '$12.90', img: 'images/foods/carbonara.jpg', popular: false },
+      { cat: 'mains', name: 'Chicken Cutlet Fried Rice', desc: 'Fragrant fried rice topped with crispy chicken cutlet.', price: '$10.90', img: 'images/foods/chixfriedrice.jpg', popular: false },
+      { cat: 'milk-tea', name: 'Mochi Mochi Chizu', desc: 'Chewy mochi meets chizu-style indulgence — fun and shareable.', price: '$6.90', img: 'images/foods/mochimochichizu.jpg', popular: true },
+      { cat: 'milk-tea', name: 'Brown Sugar Pearl Fresh Milk', desc: 'Warm brown sugar pearls swirled into cold fresh milk.', price: '$4.60', img: 'images/foods/bspfm.jpg', popular: true },
+      { cat: 'milk-tea', name: 'Mango Pomelo', desc: 'Tropical mango, pomelo bits, and refreshing tea — a bestseller.', price: '$5.90', img: 'images/foods/mangopomelo.jpg', popular: true },
+      { cat: 'milk-tea', name: 'Matcha Latte', desc: 'Smooth matcha with milk — balanced, not too sweet.', price: '$5.50', img: 'images/foods/matcha.jpg', popular: false },
+      { cat: 'dessert', name: 'Yogurty Fruit Bowl', desc: 'Creamy yogurt-style base loaded with fruit — light and refreshing.', price: '$7.90', img: 'images/foods/yogurtyfruit.png', popular: false },
+      { cat: 'dessert', name: 'Yuan Yang Bowl', desc: 'Best of both worlds in one bowl — rich and comforting.', price: '$7.90', img: 'images/foods/yuanyang.png', popular: false },
+      { cat: 'dessert', name: 'Fresh Milk Treasures Bowl', desc: 'Fresh milk with toppings and treasures — dessert in a bowl.', price: '$8.90', img: 'images/foods/freshmilktreasuresbowl.png', popular: true },
+      { cat: 'dessert', name: 'Icy Black Bowl', desc: 'Cool, dark, and silky — perfect to end the meal.', price: '$7.90', img: 'images/foods/icyblackbowl.png', popular: false },
     ];
 
     function renderMenu(filter) {
@@ -649,9 +658,9 @@
       const items = filter === 'all' ? menuItems : menuItems.filter(i => i.cat === filter);
       grid.innerHTML = items.map(item => `
         <div class="menu-card ${item.popular ? 'popular-badge' : ''}">
-          <div class="menu-card-img">${item.emoji}</div>
+          <div class="menu-card-img"><img src="${item.img}" alt="${item.name.replace(/"/g, '&quot;')}" loading="lazy" width="480" height="360" /></div>
           <div class="menu-card-body">
-            <div class="menu-card-tag">${item.cat.replace('-', ' ')}</div>
+            <div class="menu-card-tag">${menuCatLabel[item.cat] || item.cat}</div>
             <div class="menu-card-name">${item.name}</div>
             <div class="menu-card-desc">${item.desc}</div>
             <div class="menu-card-footer">
