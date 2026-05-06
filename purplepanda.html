@@ -59,6 +59,8 @@
     .nav-links { display: flex; align-items: center; gap: 8px; }
     .nav-links a { color: var(--purple-300); text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 6px 14px; border-radius: 20px; transition: all 0.2s; }
     .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.1); }
+    .nav-menu-btn { border: 1px solid rgba(255,255,255,0.35); color: var(--white) !important; }
+    .nav-menu-btn:hover { border-color: var(--gold-light); background: rgba(245,168,0,0.12) !important; }
     .nav-cta { background: var(--gold) !important; color: var(--purple-900) !important; font-weight: 700 !important; }
     .nav-cta:hover { background: var(--gold-light) !important; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
@@ -198,6 +200,16 @@
     .popular-badge::after { content: '⭐ Popular'; position: absolute; top: 10px; right: 10px; z-index: 2; background: var(--gold); color: var(--purple-900); font-size: 0.68rem; font-weight: 700; padding: 3px 8px; border-radius: 10px; }
     .menu-cta { text-align: center; margin-top: 40px; }
 
+    /* PROMOS */
+    .promos-section { background: var(--purple-100); }
+    .promos-header { text-align: center; margin-bottom: 40px; }
+    .promos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+    .promo-card { background: var(--white); border-radius: var(--radius-lg); padding: 20px; border: 1px solid var(--purple-300); box-shadow: var(--shadow-card); transition: transform 0.2s, box-shadow 0.2s; }
+    .promo-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(38,33,92,0.16); }
+    .promo-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple-700); background: var(--purple-100); padding: 4px 10px; border-radius: 999px; margin-bottom: 10px; }
+    .promo-name { font-family: 'Baloo 2', cursive; font-size: 1.15rem; font-weight: 700; color: var(--purple-900); margin-bottom: 6px; }
+    .promo-desc { color: var(--text-mid); font-size: 0.86rem; line-height: 1.5; }
+
     /* PARTY */
     .party-section { background: linear-gradient(135deg, var(--purple-900), var(--purple-800)); color: var(--white); }
     .party-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -316,7 +328,8 @@
       <div class="nav-logo-text">Purple <span>Panda</span></div>
     </a>
     <div class="nav-links" id="navLinks">
-      <a href="#menu">Menu</a>
+      <a href="#menu" class="nav-menu-btn">Menu</a>
+      <a href="#promos">Promos</a>
       <a href="#about">Our Story</a>
       <a href="#membership">Free Membership</a>
       <a href="#party">Event Orders</a>
@@ -488,6 +501,23 @@
     <div class="menu-grid" id="menuGrid"></div>
     <div class="menu-cta reveal">
       <a href="#order" class="btn btn-full">See Full Menu & Order 🍽️</a>
+    </div>
+  </section>
+
+  <!-- PROMOS -->
+  <section class="promos-section" id="promos">
+    <div class="promos-header reveal">
+      <div class="section-label">🎁 Current Promotions</div>
+      <h2 class="section-title">Latest <em>Promos</em></h2>
+      <p class="section-subtitle" style="margin:0 auto;">Exclusive offers for students, families, and nearby residents.</p>
+    </div>
+    <div class="promos-grid">
+      <div class="promo-card reveal"><div class="promo-tag">Promo</div><div class="promo-name">Student Meals</div><p class="promo-desc">Special meal bundles curated for students at great value.</p></div>
+      <div class="promo-card reveal"><div class="promo-tag">Promo</div><div class="promo-name">Student Promo</div><p class="promo-desc">Extra student savings on selected favourites.</p></div>
+      <div class="promo-card reveal"><div class="promo-tag">Promo</div><div class="promo-name">Lunch Set</div><p class="promo-desc">Affordable lunch combinations for weekday dining.</p></div>
+      <div class="promo-card reveal"><div class="promo-tag">Promo</div><div class="promo-name">Elderly Offer</div><p class="promo-desc">Special pricing support for senior customers.</p></div>
+      <div class="promo-card reveal"><div class="promo-tag">Promo</div><div class="promo-name">Saints Discount</div><p class="promo-desc">Community discount for eligible Saints members.</p></div>
+      <div class="promo-card reveal"><div class="promo-tag">Promo</div><div class="promo-name">Poiz Residence Discount</div><p class="promo-desc">Neighbourhood offer for Poiz residence customers.</p></div>
     </div>
   </section>
 
