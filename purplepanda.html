@@ -484,7 +484,6 @@
       <button class="menu-tab" onclick="filterMenu('milk-tea', this)">🧋 Bubble Tea</button>
       <button class="menu-tab" onclick="filterMenu('mains', this)">🍗 Mains</button>
       <button class="menu-tab" onclick="filterMenu('dessert', this)">🍮 Bowls &amp; desserts</button>
-      <button class="menu-tab" onclick="filterMenu('promos', this)">🎁 Promos</button>
     </div>
     <div class="menu-grid" id="menuGrid"></div>
     <div class="menu-cta reveal">
@@ -576,6 +575,16 @@
         <h4>Our Website</h4>
         <p>Order directly from us</p>
       </a>
+      <a href="#" class="order-option">
+        <div class="order-option-emoji">🟢</div>
+        <h4>GrabFood</h4>
+        <p>Fast delivery island-wide</p>
+      </a>
+      <a href="#" class="order-option">
+        <div class="order-option-emoji">🔵</div>
+        <h4>foodpanda</h4>
+        <p>Delivered to your door</p>
+      </a>
       <a href="#locations" class="order-option">
         <div class="order-option-emoji">🏃</div>
         <h4>Self-Collect</h4>
@@ -594,9 +603,9 @@
         </a>
         <p>Singapore's favourite family-friendly diner. Born in Singapore. Where there's always something for everyone in the family.</p>
         <div class="footer-socials">
-          <a class="footer-social" href="https://www.instagram.com/purplepandasg/" target="_blank" aria-label="Instagram">📸</a>
+          <a class="footer-social" href="https://www.instagram.com/purplepanda.sg/" target="_blank" aria-label="Instagram">📸</a>
           <a class="footer-social" href="https://www.facebook.com/purplepanda.sg/" target="_blank" aria-label="Facebook">📘</a>
-          <a class="footer-social" href="https://www.tiktok.com/@purplepanda_sg" target="_blank" aria-label="TikTok">🎵</a>
+          <a class="footer-social" href="https://www.tiktok.com/@purplepanda.sg" target="_blank" aria-label="TikTok">🎵</a>
         </div>
       </div>
       <div class="footer-col">
@@ -633,7 +642,7 @@
   <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
   <script>
-    const menuCatLabel = { 'milk-tea': 'Bubble tea', 'mains': 'Mains', 'dessert': 'Bowls & desserts', 'promos': 'Promos' };
+    const menuCatLabel = { 'milk-tea': 'Bubble tea', 'mains': 'Mains', 'dessert': 'Bowls & desserts' };
 
     const menuItems = [
       { cat: 'mains', name: 'Fish and Chips', desc: 'Crispy battered fish with golden fries and tartar — a diner classic.', price: '$12.90', img: 'images/foods/fnc.jpg', popular: true },
@@ -652,22 +661,12 @@
       { cat: 'dessert', name: 'Yuan Yang Bowl', desc: 'Best of both worlds in one bowl — rich and comforting.', price: '$7.90', img: 'images/foods/yuanyang.png', popular: false },
       { cat: 'dessert', name: 'Fresh Milk Treasures Bowl', desc: 'Fresh milk with toppings and treasures — dessert in a bowl.', price: '$8.90', img: 'images/foods/freshmilktreasuresbowl.png', popular: true },
       { cat: 'dessert', name: 'Icy Black Bowl', desc: 'Cool, dark, and silky — perfect to end the meal.', price: '$7.90', img: 'images/foods/icyblackbowl.png', popular: false },
-<<<<<<< HEAD
       { cat: 'promos', name: 'Student Meals', desc: 'Special value set options for students.', price: 'Promo', img: 'images/logo/Purple%20Panda%20LOGO_WhiteBG.png', popular: true },
       { cat: 'promos', name: 'Student Promo', desc: 'Extra student savings on selected items.', price: 'Promo', img: 'images/logo/Purple%20Panda%20LOGO_WhiteBG.png', popular: true },
       { cat: 'promos', name: 'Lunch Set', desc: 'Midday combo deals perfect for quick lunches.', price: 'Promo', img: 'images/logo/Purple%20Panda%20LOGO_WhiteBG.png', popular: false },
       { cat: 'promos', name: 'Elderly Offer', desc: 'Special offer for senior customers.', price: 'Promo', img: 'images/logo/Purple%20Panda%20LOGO_WhiteBG.png', popular: false },
       { cat: 'promos', name: 'Saints Discount', desc: 'Exclusive discount for Saints community members.', price: 'Promo', img: 'images/logo/Purple%20Panda%20LOGO_WhiteBG.png', popular: false },
       { cat: 'promos', name: 'Poiz Residence Discount', desc: 'Neighbourhood discount for Poiz residence customers.', price: 'Promo', img: 'images/logo/Purple%20Panda%20LOGO_WhiteBG.png', popular: false },
-=======
-      { cat: 'milk-tea', name: 'Matcha Latte', desc: 'Smooth matcha with milk — balanced, not too sweet.', price: '$5.90', img: 'images/foods/matcha.jpg', popular: false },
-      { cat: 'dessert', name: 'Yogurty Fruit Bowl', desc: 'Creamy yogurt-style base loaded with fruit — light and refreshing.', price: '$6.90', img: 'images/foods/yogurtyfruit.png', popular: false },
-      { cat: 'dessert', name: 'Yuan Yang Bowl', desc: 'Best of both worlds in one bowl — rich and comforting.', price: '$4.60', img: 'images/foods/yuanyang.png', popular: false },
-      { cat: 'dessert', name: 'Fresh Milk Treasures Bowl', desc: 'Fresh milk with toppings and treasures — dessert in a bowl.', price: '$5.90', img: 'images/foods/freshmilktreasuresbowl.png', popular: true },
-      { cat: 'dessert', name: 'Icy Black Bowl', desc: 'Cool, dark, and silky — perfect to end the meal.', price: '$5.60', img: 'images/foods/icyblackbowl.png', popular: false },
->>>>>>> 6a89387577b53258465f4c238f3ad7c5ff4151f2
-=======
->>>>>>> parent of 483c65b (Update purplepanda.html price)
     ];
 
     function renderMenu(filter) {
